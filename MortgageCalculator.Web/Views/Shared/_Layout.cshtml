@@ -36,36 +36,29 @@
     <script type="text/javascript">
     $(document).ready(function () {
         $("input[name=calButton]").on('click', function () {
-            var selectedMortgage = $('input[name = mortSelected]:checked');
-            var loanAmount = $('#loanAmount');
-            var loanDuration = $('#loanDuration');
-            var interestType = selectedMortgage.text().split(',')[0];
-            var interestRate = selectedMortgage.text().split(',')[1];
+            var selectedMortgage = $('input[name=mortSelected]:checked').val();
+            var loanAmount = parseFloat($('#loanAmount').val());
+            var loanDuration = parseFloat($('#loanDuration').val());
+            var interestType = selectedMortgage.split(',')[0];
+            var interestRate = parseFloat(selectedMortgage.split(',')[1]);
             var ttlRepayment = 0.00;
             var ttlInterest = 0.00;
 
             if (interestType.indexOf('InterestOnly') != -1) {
-                var monthlyInterestRate = (interestRate / 100) / 12;
-                var interestPerMonth = monthlyInterestRate * loanAmount;
-                ttlInterest = interestPerMonth * loanDuration * 12;
+                var yearlyInterestRate = (interestRate / 100);
+                var interestPerYear = yearlyInterestRate * loanAmount;
+                ttlInterest = interestPerYear * loanAmount * loanDuration;
                 ttlRepayment = ttlInterest + loanAmount;
             } else {
+                var totalPaymentPeriods = loanDuration * 12;
                 var monthlyInterestRate = (interestRate / 100) / 12;
-                var interestPerMonth = monthlyInterestRate * loanAmount;
-                ttlInterest = interestPerMonth * loanDuration * 12;
-                ttlRepayment = ttlInterest + loanAmount;
+                ttlInterest = (interestRate / 100) * loanAmount * loanDuration;
+                var monthlyRepayment = (monthlyInterestRate * loanAmount) / (1 - Math.pow((1 + monthlyInterestRate), -Math.abs(totalPaymentPeriods)));
+                ttlRepayment = monthlyRepayment * totalPaymentPeriods;
             }
-            
 
-
-            //var design = $('input[name=design]:checked');
-            //var designVal = parseInt(design.val());
-            //var qtt = $("#qtt").val();
-            //var subDrop = parseInt(design.data('drop-' + qtt));
-            //if (!subDrop) subDrop = 0;
-            //if (!designVal) designVal = 0;
-            $('#totalRepayment').text(ttlRepayment.val)
-            $('#totalInterest').text(ttlInterest.val)
+            $('#totalRepayment').text('$' + ttlRepayment.toFixed(2))
+            $('#totalInterest').text('$' + ttlInterest.toFixed(2))
         });
     });
     </script>
