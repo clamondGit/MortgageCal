@@ -49,7 +49,7 @@
                                 <td>@m.EstablishmentFee</td>
                                 <td>@m.CancellationFee</td>
                                 <td>@m.InterestRate</td>
-                                <td><input type="radio" name="mortId" value="@m.MortgageId" /></td>
+                                <td><input type="radio" name="mortSelected" value="@m.InterestRepayment,@m.InterestRate" required="" /></td>
                             </tr>
                         }
                     </table>
@@ -58,21 +58,35 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Borrowed Amount</label>
-                    <div class="col-md-4">
-                        <input id="textinput" name="loanAmount" type="text" placeholder="0.00" class="form-control input-md" required="">
-                        <span class="help-block">Enter the amount to borrow</span>
+                    <div class="row col-md-12">
+                        <label class="col-md-2 control-label" for="textinput">Borrowed Amount</label>
+                        <div class="col-md-3">
+                            <input id="loanAmount" name="loanAmount" type="text" placeholder="0.00" class="form-control input-md" required="">
+                            <span class="help-block">Enter the amount to borrow</span>
+                        </div>
+                        <label class="col-md-2 control-label" for="textinput">Loan Duration</label>
+                        <div class="col-md-3">
+                            <input id="loanDuration" name="loanDuration" type="text" placeholder="1-30" class="form-control input-md" required="">
+                            <span class="help-block">Select loan period in years</span>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="btn btn-block" type="button" value="Calculate" name="calButton" />
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Loan Duration</label>
-                    <div class="col-md-4">
-                        <input id="textinput" name="loanDuration" type="text" placeholder="0.00" class="form-control input-md" required="">
-                        <span class="help-block">Select loan period in years</span>
+                <div class="form-group" style="background-color:lightcyan">
+                    <div class="row col-md-12">
+                        <label class="col-md-2 control-label">Total Repayment</label>
+                        <span class="col-md-1 control-label" id="totalRepayment"></span>
+                    </div>
+                    <div class="row col-md-12">
+                        <label class="col-md-2 control-label">Total Interest</label>
+                        <span class="col-md-1 control-label" id="totalInterest"></span>
                     </div>
                 </div>
-
             </fieldset>
         </form>
+
     </div>
 </div>
+
