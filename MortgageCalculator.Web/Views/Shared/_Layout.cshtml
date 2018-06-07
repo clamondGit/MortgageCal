@@ -36,6 +36,11 @@
     <script type="text/javascript">
     $(document).ready(function () {
         $("input[name=calButton]").on('click', function () {
+
+            $("#loanAmount").keyup(function () {
+                this.value = this.value.replace(/[^0-9\.]/g, '');
+            });
+
             var selectedMortgage = $('input[name=mortSelected]:checked').val();
             var loanAmount = parseFloat($('#loanAmount').val());
             var loanDuration = parseFloat($('#loanDuration').val());
