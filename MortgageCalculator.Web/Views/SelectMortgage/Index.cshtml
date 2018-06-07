@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @{ 
+            foreach(var mort in Model)
+            {
+                <div>@mort.MortgageId</div>
+                <div>@mort.MortgageType</div>
+                <div>@mort.Name</div>
+                <div>@mort.InterestRate</div>
+            }
+        }
+    </div>
+</body>
+</html>

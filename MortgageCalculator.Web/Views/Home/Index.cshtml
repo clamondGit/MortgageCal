@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    int i = 1;
+}
+
+<div class="jumbotron">
+    <h1>Mortgage Calculator</h1>
+    <p class="lead">
+        The Mortgage Calculator helps you:
+        <ul>
+            <li>Choose the right loan for you</li>
+            <li>The Interests and Repayment on your loan</li>
+        </ul>
+    </p>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Calculator</legend>
+
+                <!-- Select Mortgage Type -->
+                <div class="form-group">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Mortgage Type</th>
+                                <th scope="col">Interest Payment</th>
+                                <th scope="col">Setup Fee</th>
+                                <th scope="col">Cancel Fee</th>
+                                <th scope="col">Interest Rate</th>
+                                <th scope="col">Select</th>
+                            </tr>
+                        </thead>
+                        @foreach (var m in Model)
+                        {
+                            <tr>
+                                <th scope="row">@(i++)</th>
+                                <td>@m.Name</td>
+                                <td>@m.MortgageType</td>
+                                <td>@m.InterestRepayment</td>
+                                <td>@m.EstablishmentFee</td>
+                                <td>@m.CancellationFee</td>
+                                <td>@m.InterestRate</td>
+                                <td><input type="radio" name="mortId" value="@m.MortgageId" /></td>
+                            </tr>
+                        }
+                    </table>
+
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Borrowed Amount</label>
+                    <div class="col-md-4">
+                        <input id="textinput" name="loanAmount" type="text" placeholder="0.00" class="form-control input-md" required="">
+                        <span class="help-block">Enter the amount to borrow</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Loan Duration</label>
+                    <div class="col-md-4">
+                        <input id="textinput" name="loanDuration" type="text" placeholder="0.00" class="form-control input-md" required="">
+                        <span class="help-block">Select loan period in years</span>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>
